@@ -53,10 +53,11 @@ h1 blink {
 
 }
 #pass_block input {
-	border: 0;
 	height: 36px;
+	padding: 0 10px;
+    max-width: 100%;
+	border: 0;
 	font-size: 24px;
-	padding: 0 0 0 30px;
 }
 #pass input.button {
 	border: 0;
