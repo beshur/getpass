@@ -1,0 +1,67 @@
+body {
+	font-family: Trebuchet MS;
+	background: #999 url("../images/bg_crypt.gif") top left repeat;
+
+}
+#container {
+	padding: 5px;
+}
+
+#pass {
+/*	font-family: Courier;
+*/	border: 3px dashed #000;
+    background: #FFF;
+	margin: 25px 0;
+	padding: 5px;
+}
+#indent {
+	text-indent: -5000;
+	color: white;
+}
+.float {
+	float:right;
+	margin: 0px;
+	padding: 0px;
+}
+.tbl_pass {
+	padding: 0px;
+	border: 1px solid #ccc;
+}
+.tbl_pass td {
+	padding: 6px;
+	border: 0px solid #ccc;
+}
+
+h1 {
+	background: #FFF;
+	padding: 5px;
+	border-bottom: 3px dashed #333;
+}
+a, a:visited, a:active {
+	color: #666;
+	padding: 3px;
+	background: white;
+}
+a:hover {
+	color: #CC6633;
+	background: white;
+	text-decoration: none;
+	padding: 3px;
+}
+h1 blink {
+	font-weight:normal;
+
+}
+#pass_block input {
+	border: 0;
+	height: 36px;
+	font-size: 24px;
+	padding: 0 0 0 30px;
+}
+#pass input.button {
+	border: 0;
+	height: 36px;
+	font-size: 30px;
+	background: #fcdd76;
+}
+#show {display:none;}
