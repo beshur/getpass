@@ -16,68 +16,115 @@
 		<h1>GetPass <blink>2</blink></h1>
 
 		<div id="pass">
-			Click to generate your 8-digit password:
+			<div class="length_input">
+			  <div><label for="password_length">Password Length</label></div>
+			  <div class="input_group"></div>
+			</div>
 
-
-			<input class="button" type="button" onclick="printpass()"  value="Refresh" />
-			<input class="button" type="button" onclick="hide(); getElementById('show').style.display='block'"  value="!" />
-
-			<br/>
+			<div class="controls">
+				<label>Controls</label>
+				<button class="button" onclick="printpass()">Refresh</button>
+				<button class="button copyToClipboard">Copy</button>
+				<button class="button" onclick="hide(); getElementById('show').style.display='block'">!</button>
+			</div>
 
 			<div id="pass_block">
-				<input type="text" id="pass_place0" value="" onclick="this.focus();this.select();" /><br/>
-				<input type="text" id="pass_place1" value="" onclick="this.focus();this.select();" /><br/>
-				<input type="text" id="pass_place2" value="" onclick="this.focus();this.select();" /><br/>
-				<input type="text" id="pass_place3" value="" onclick="this.focus();this.select();" /><br/>
-				<input type="text" id="pass_place4" value="" onclick="this.focus();this.select();" />
+				<input type="text" spellcheck="false" id="pass_place0" value="" onclick="this.focus();this.select();" /><br/>
 			</div>
 			<div id="show">
 				<small onclick="show()"><a href="#">&bull; &rarr; a</a></small>
-				<a href="https://github.com/beshur/getpass/raw/master/js/getpass.js" target="_blank" title="Download JS-file">Download JS-file</a>
 			</div>
 		</div>
 
+		<a href="https://github.com/beshur/getpass" class="source_tip" title="on github">Source code</a>
 	</div>
-
-	<a href="https://github.com/beshur/getpass"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
 
 	<script type="text/javascript" src="js/getpass.js"></script>
 	<script type="text/javascript">
+		var passwordLengthMin = 8;
+		var passwordLengthMax = 24;
+		var passwordLength = passwordLengthMin;
+		var numberOfInputs = 1;
+		var generatedPass = [];
+
 		function genfivepass() {
-			var pass_arr = new Array();
 			for (i = 0; i < 5; i++) {
-				pass_arr[i] = passGen();
+				generatedPass[i] = passGen(passwordLength);
 			}
 
-			return pass_arr;
+			return generatedPass;
 		}
 
-		function printpass(symbols_array) {
-			var pass_arr = genfivepass();
-			for (var i=0; i<5; i++) {
+		function printpass() {
+			var generatedPass = genfivepass();
+			for (var i=0; i< numberOfInputs; i++) {
 				form_id='pass_place' + i;
-				document.getElementById(form_id).value=pass_arr[i];
+				document.getElementById(form_id).value=generatedPass[i];
 			}
 
 		}
 
 		function hide() {
-			for (var i=0; i<5; i++) {
+			for (var i=0; i< numberOfInputs; i++) {
 				form_id='pass_place' + i;
 				document.getElementById(form_id).type='password';
 			}
 		}
 		function show() {
-			for (var i=0; i<5; i++) {
+			for (var i=0; i< numberOfInputs; i++) {
 				form_id='pass_place' + i;
 				document.getElementById(form_id).type='text';
 			}
 		}
 
+		// https://gist.github.com/Chalarangelo/65320a1953388d0042829ac1fb989e33#file-copytoclipboard-js
+		function copyToClipboard(str) {
+		  const el = document.createElement('textarea');
+		  el.value = str;
+		  document.body.appendChild(el);
+		  el.select();
+		  document.execCommand('copy');
+		  document.body.removeChild(el);
+		};
 
+		function renderPassLengthInputs() {
+			var container = document.querySelector('.length_input .input_group');
+			for (var i = passwordLengthMin; i <= passwordLengthMax; i = i + 4) {
+				var item = document.createElement('span');
+				item.textContent = i;
+				if (i === passwordLengthMin) {
+					item.classList.add('active');
+				}
+				container.appendChild(item);
+			}
+		}
+
+		function toggleActiveClassForPassLengthInput(el) {
+			var elSiblings = el.parentNode.children;
+			var active = 'active';
+			for (let i = 0; i < elSiblings.length; i++) {
+				elSiblings[i].classList.remove(active);
+			}
+			el.classList.add(active);
+		}
 
 		function start() {
+			renderPassLengthInputs();
 			printpass();
+
+			document.querySelector('.length_input .input_group').addEventListener('click', function(event) {
+				var el = event.target;
+				var newLength = parseInt(el.textContent);
+				if (newLength) {
+					passwordLength = newLength;
+					printpass();
+					toggleActiveClassForPassLengthInput(el);
+				}
+			});
+
+			document.querySelector('.copyToClipboard').addEventListener('click', function(event) {
+				copyToClipboard(generatedPass[0]);
+			});
 		}
 		window.onload=start;
 
