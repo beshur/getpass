@@ -1,4 +1,11 @@
-function passGen(symbols_array) {
+/*
+ * Password generator
+ * Author: Alex Buznik <shu@buznik.net>
+ * 2009-2019
+ *
+ * Source: https://github.com/beshur/getpass
+ */
+function passGen(passwordLength) {
     var pass = '';
     var symbols = ["a","b","c","d","e","f","g","h","i","u","q","j","k","l","m","n","o","p","r","s","t","w","v","x","y","z","A","B","C","D","E","F","G","H","I","U","J","K","L","M","N","O","P","R","S","T","Q","W","V","X","Y","Z",1,2,3,4,5,6,7,8,9,0,"-","_","!","%"];
 
@@ -33,8 +40,8 @@ function passGen(symbols_array) {
         return ( ( Ticks == 1 ) ? Indexes.join ( ) : Indexes );
     }
 
-    for (var i = 0; i < 8; i++) {
-        var val = array_rand(symbols,1);
+    for (var i = 0; i < passwordLength; i++) {
+        var val = array_rand(symbols, 1);
         pass = pass + symbols[val];
     }
     return pass;
