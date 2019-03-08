@@ -8,6 +8,9 @@
 function passGen(passwordLength) {
     var pass = '';
     var symbols = ["a","b","c","d","e","f","g","h","i","u","q","j","k","l","m","n","o","p","r","s","t","w","v","x","y","z","A","B","C","D","E","F","G","H","I","U","J","K","L","M","N","O","P","R","S","T","Q","W","V","X","Y","Z",1,2,3,4,5,6,7,8,9,0,"-","_","!","%"];
+    if (!passwordLength) {
+        passwordLength = 8;
+    }
 
     function array_rand ( input, num_req ) {
 
