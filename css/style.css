@@ -1,18 +1,15 @@
 body {
 	font-family: Trebuchet MS;
-	background: #999 url("../images/bg_crypt.gif") top left repeat;
-
+	background: #868686;
+	margin: 0;
+	padding: 0;
 }
 #container {
-	padding: 5px;
 }
 
 #pass {
-/*	font-family: Courier;
-*/	border: 3px dashed #000;
-    background: #FFF;
-	margin: 25px 0;
-	padding: 5px;
+  background: #FFF;
+	padding: 25px 40px;
 }
 #indent {
 	text-indent: -5000;
@@ -34,8 +31,8 @@ body {
 
 h1 {
 	background: #FFF;
-	padding: 5px;
-	border-bottom: 3px dashed #333;
+	padding: 40px;
+	margin-bottom: 0;
 }
 a, a:visited, a:active {
 	color: #666;
@@ -50,19 +47,51 @@ a:hover {
 }
 h1 blink {
 	font-weight:normal;
+}
 
+.controls {
+	display: inline-block;
+}
+.controls label {
+	display: block;
 }
 #pass_block input {
-	height: 36px;
-	padding: 0 10px;
-    max-width: 100%;
+	display: block;
+	padding: 20px 0;
 	border: 0;
-	font-size: 24px;
+	width: 100%;
+	font-size: 36px;
+	text-align: left;
+	font-family: monospace;
 }
-#pass input.button {
+.length_input .input_group span,
+#pass button {
+	display: inline-block;
+	padding: 4px 12px;
 	border: 0;
-	height: 36px;
 	font-size: 30px;
 	background: #fcdd76;
+	cursor: pointer;
 }
+
+.length_input .input_group span:hover,
+#pass button:hover {
+	background: #ffeba9;
+}
+.length_input .input_group span.active,
+#pass button:active {
+	background: #fbce3a;
+}
+
 #show {display:none;}
+
+.length_input {
+	display: inline-block;
+	margin-bottom: 14px;
+}
+
+@media all and (max-width: 600px) {
+	#pass_block input {
+		font-size: 24px;
+	}
+}
