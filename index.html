@@ -16,16 +16,18 @@
 		<h1>GetPass <blink>2</blink></h1>
 
 		<div id="pass">
-			<div class="length_input">
-			  <div><label for="password_length">Password Length</label></div>
-			  <div class="input_group"></div>
-			</div>
+			<div class="controls_wrapper">
+				<div class="length_input">
+				  <div><label for="password_length">Password Length</label></div>
+				  <div class="input_group"></div>
+				</div>
 
-			<div class="controls">
-				<label>Controls</label>
-				<button class="button" onclick="printpass()">Refresh</button>
-				<button class="button copyToClipboard">Copy</button>
-				<button class="button" onclick="hide(); getElementById('show').style.display='block'">!</button>
+				<div class="controls">
+					<label>Controls</label>
+					<button class="button" onclick="printpass()">Refresh</button>
+					<button class="button copyToClipboard">Copy</button>
+					<button class="button" onclick="hide(); getElementById('show').style.display='block'">!</button>
+				</div>
 			</div>
 
 			<div id="pass_block">
