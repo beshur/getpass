@@ -67,6 +67,7 @@ h1 blink {
 	font-size: 30px;
 	background: #fcdd76;
 	cursor: pointer;
+	user-select: none;
 }
 
 .length_input .input_group span:hover,
